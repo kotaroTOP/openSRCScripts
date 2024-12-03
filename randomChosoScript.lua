@@ -1,4 +1,4 @@
-args = { [1] = "Choso" }
+local args1 = { [1] = "Choso" }
 local table1 = {}
 game:GetService("ReplicatedStorage"):WaitForChild("Knit"):WaitForChild("Knit"):WaitForChild("Services"):WaitForChild("JoinService"):WaitForChild("RE"):WaitForChild("Change"):FireServer(unpack(args))
 local function startLoop(skillName, serviceName, scriptTable, extraArgs)
@@ -15,5 +15,15 @@ end
 local function stopLoop(skillName, scriptTable)
     scriptTable[skillName] = nil
 end
-uis.InputStarted:Connect(function() end)
-startLoop("PiercingBlood", "PiercingBloodService", table1)
+uis.InputStarted:Connect(function(gpe, Key) 
+    if gpe then end
+    if Key.KeyCode == Enum.KeyCode.X then
+        if isLoop1 == false then
+            isLoop1 = true
+            startLoop("PiercingBlood", "PiercingBloodService", table1)
+        else
+            isLoop1 = false
+            stopLoop("PiercingBlood", table1)
+        end
+    end
+end)
